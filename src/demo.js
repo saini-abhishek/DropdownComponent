@@ -1,8 +1,6 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemText from "@material-ui/core/ListItemText";
 
 const StyledMenu = withStyles({
   paper: {
@@ -26,18 +24,20 @@ const StyledMenu = withStyles({
   />
 ));
 
-const StyledMenuItem = withStyles(theme => ({
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white
-      }
-    }
-  }
-}))(MenuItem);
+// const StyledMenuItem = withStyles(theme => ({
+//   root: {
+//     width: '256px',
+//     "&:focus": {
+//       backgroundColor: theme.palette.primary.main,
+//       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
+//         color: theme.palette.common.white
+//       }
+//     }
 
-export default function CustomizedMenus({ children }) {
+//   }
+// }))(MenuItem);
+
+export default function CustomizedMenus({ iconComponent, ...props }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {
@@ -47,7 +47,7 @@ export default function CustomizedMenus({ children }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const menuIcon = React.cloneElement(children, { onClick: handleClick });
+  const menuIcon = React.cloneElement(iconComponent, { onClick: handleClick });
 
   return (
     <div>
@@ -59,12 +59,13 @@ export default function CustomizedMenus({ children }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem>
-          <ListItemText>Bussiness unit settings</ListItemText>
+        {props.children && props.children}
+        {/* <StyledMenuItem>
+          <ListItemText>Bussiness</ListItemText>
         </StyledMenuItem>
         <StyledMenuItem>
           <ListItemText>Inbox</ListItemText>
-        </StyledMenuItem>
+        </StyledMenuItem> */}
       </StyledMenu>
     </div>
   );
