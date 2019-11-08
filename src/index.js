@@ -1,7 +1,15 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import CustomizedMenus from "./demo";
+import ImageAvatar from "./ImageAvatar";
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Demo from './demo';
-
-ReactDOM.render(<Demo />, document.querySelector('#root'));
-    
+function App() {
+  return (
+    <div>
+      <CustomizedMenus>
+        <ImageAvatar size="smallAvatar" userName="AB" />
+      </CustomizedMenus>
+    </div>
+  );
+}
+ReactDOM.render(<App />, document.querySelector("#root"));
